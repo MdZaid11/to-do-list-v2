@@ -1,0 +1,21 @@
+<%- include("header") -%>
+  <div class="box" id="heading">
+    <h1><%= kindOfPage%></h1>
+  </div>
+
+  <div class="box">
+    <%newItems.forEach(function(newItem){%>
+      <form action="/delete" method="post">  <!-- the value of post requets that is newItem is accepted here to via ejs template-->
+        <div class="item">
+          <input type="checkbox" name="deleteItem"  value="<%=newItem._id%>" onChange="this.form.submit()">
+            <p class="p"><%=newItem.name%></p>
+        </div>
+        <input type="hidden" name="listItem" value="<%=kindOfPage%>"></input>
+      </form>
+  <% }) %>
+    <form class="item" action="/" method="post">
+      <input type="text" name="newItem" placeholder="Add new item" autocomplete="off">
+      <button class="button" type="submit" name="list"    value="<%=kindOfPage%>">+</button>
+    </form>
+  </div>
+<%- include("footer") -%>
